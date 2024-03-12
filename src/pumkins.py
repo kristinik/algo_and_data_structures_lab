@@ -1,4 +1,4 @@
-def robot(our_list):
+def find_sum(our_list):
     n = len(our_list)
     ready_list = []
     for i in range(n):
@@ -8,12 +8,6 @@ def robot(our_list):
             ready_list.extend(reversed(our_list[i]))
     return ready_list
 
-
-our_list = [[1, 2, 3, 4],
-            [5, 6, 7, 8],
-            [9, 10, 11, 12],
-            [13, 14, 15, 16]]
-print(robot(our_list))
 
 
 

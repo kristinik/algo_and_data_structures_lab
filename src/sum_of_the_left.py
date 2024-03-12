@@ -17,13 +17,3 @@ def Sums(root):
 
 
     return help(root, False)
-
-
-root = BinaryTree(4)
-root.left = BinaryTree(11)
-root.right = BinaryTree(21)
-root.right.left = BinaryTree(17)
-root.right.right = BinaryTree(6)
-
-
-print(Sums(root))

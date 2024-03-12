@@ -1,35 +1,16 @@
 import unittest
-from src.pumkins import robot
+from src.sum_of_three import find_sum
 
-class TestRobot(unittest.TestCase):
+class TestFindSum(unittest.TestCase):
+    def test_find_sum_negative_numbers(self):
+        arr = [-1, -2, -3, -4, -5]
+        P = -9
+        self.assertTrue(find_sum(arr, P))
 
-    def test_5x5(self):
-        our_list = [[1, 2, 3, 4, 5],
-                    [6, 7, 8, 9, 10],
-                    [11, 12, 13, 14, 15],
-                    [16, 17, 18, 19, 20],
-                    [21, 22, 23, 24, 25]]
-        expected_output = [1, 2, 3, 4, 5, 10, 9, 8, 7, 6, 11, 12, 13, 14, 15, 20, 19, 18, 17, 16, 21, 22, 23, 24, 25]
-        self.assertEqual(robot(our_list), expected_output)
-
-    def test_2x4(self):
-        our_list = [[1, 2, 3, 4],
-                    [5, 6, 7, 8]]
-        expected_output = [1, 2, 3, 4, 8, 7, 6, 5]
-        self.assertEqual(robot(our_list), expected_output)
-
-    def test_1x1(self):
-        our_list = [[1]]
-        expected_output = [1]
-        self.assertEqual(robot(our_list), expected_output)
-
-    def test_6x1(self):
-        our_list = [[1], [2], [3], [4], [5], [6]]
-        expected_output = [1, 2, 3, 4, 5, 6]
-        self.assertEqual(robot(our_list), expected_output)
-
+    def test_find_sum_zero_P(self):
+        arr = [1, 2, 3, 4, 5]
+        P = 0
+        self.assertFalse(find_sum(arr, P))
 
 if __name__ == '__main__':
     unittest.main()
-
-
