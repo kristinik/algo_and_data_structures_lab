@@ -3,14 +3,19 @@ class BinaryTree:
         self.value = value
         self.left = None
         self.right = None
-def Sums_of_right(root):
-    def help(node, is_right_child):
+
+def Sums(root):
+    def help(node, is_left_child):
+
         if not node:
             return 0
-        if not node.left and not node.right and is_right_child:
+        if not node.left and not node.right and is_left_child:
+
             return node.value
-        return help(node.left, False) + help(node.right, True)
+        return help(node.left, True) + help(node.right, False)
+
 
     return help(root, False)
+
 
 
