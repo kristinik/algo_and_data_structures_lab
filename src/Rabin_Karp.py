@@ -1,4 +1,4 @@
-def rabin_karp(haystack, needle):
+def rabin_karp(haystack, needle, base = 3, divisor = 101):
     if not haystack or not needle:
         return []
 
@@ -6,8 +6,6 @@ def rabin_karp(haystack, needle):
     needle_len = len(needle)
     result = []
 
-    base = 256
-    divisor = 101
 
     pattern_mask = 0
     for i in range(needle_len):
@@ -26,8 +24,3 @@ def rabin_karp(haystack, needle):
                 haystack[i + needle_len])) % divisor
 
     return result
-
-
-haystack = "ababcababcabc"
-needle = "abc"
-print("Індекси входжень підстрічки:", rabin_karp(haystack, needle))
