@@ -1,50 +1,48 @@
-
 class DisjointSet:
     def __init__(self, n):
         self.parent = list(range(n))
         self.rank = [0] * n
 
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
+    def find(self, vertex):
+        if self.parent[vertex] != vertex:
+            self.parent[vertex] = self.find(self.parent[vertex])
+        return self.parent[vertex]
 
-    def union(self, x, y):
-        root_x = self.find(x)
-        root_y = self.find(y)
+    def union(self, vertex1, vertex2):
+        root_vertex1 = self.find(vertex1)
+        root_vertex2 = self.find(vertex2)
 
-        if root_x == root_y:
+        if root_vertex1 == root_vertex2:
             return False
 
-        if self.rank[root_x] < self.rank[root_y]:
-            self.parent[root_x] = root_y
-        elif self.rank[root_x] > self.rank[root_y]:
-            self.parent[root_y] = root_x
+        if self.rank[root_vertex1] < self.rank[root_vertex2]:
+            self.parent[root_vertex1] = root_vertex2
+        elif self.rank[root_vertex1] > self.rank[root_vertex2]:
+            self.parent[root_vertex2] = root_vertex1
         else:
-            self.parent[root_y] = root_x
-            self.rank[root_x] += 1
+            self.parent[root_vertex2] = root_vertex1
+            self.rank[root_vertex1] += 1
 
         return True
 
-
 def kruskal_mst(graph):
-    n = len(graph)
+    vertex_count = len(graph)
     edges = []
-    for i in range(n):
-        for j in range(i + 1, n):
+    for i in range(vertex_count):
+        for j in range(i + 1, vertex_count):
             if graph[i][j] != 0:
                 edges.append((graph[i][j], i, j))
 
     edges.sort()
     mst = []
-    ds = DisjointSet(n)
+    ds = DisjointSet(vertex_count)
 
     for edge in edges:
-        weight, u, v = edge
-        if ds.union(u, v):
+        weight, vertex1, vertex2 = edge
+        if ds.union(vertex1, vertex2):
             mst.append(edge)
 
-    total_weight = sum(weight for weight, _, _ in mst)
+    total_weight = sum(edge[0] for edge in mst)
     return total_weight
 
 def read_graph(file_path):
