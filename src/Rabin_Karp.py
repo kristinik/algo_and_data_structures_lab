@@ -1,4 +1,4 @@
-def rabin_karp(haystack, needle, base = 3, divisor = 101):
+def rabin_karp(haystack, needle, base=3, divisor=101):
     if not haystack or not needle:
         return []
 
