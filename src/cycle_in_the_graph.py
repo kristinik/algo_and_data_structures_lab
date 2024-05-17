@@ -31,7 +31,6 @@ def write_result_to_file(result, file_name):
     with open(file_name, 'w') as file:
         file.write(str(result))
 
-if __name__ == "__main__":
     graph = read_graph_from_file('../resources/input.txt')
     result = has_cycle(graph)
     write_result_to_file(result, '../resources/output.txt')

@@ -1,3 +1,5 @@
+import csv
+
 class DisjointSet:
     def __init__(self, n):
         self.parent = list(range(n))
@@ -45,11 +47,16 @@ def kruskal_mst(graph):
     total_weight = sum(edge[0] for edge in mst)
     return total_weight
 
-def read_graph(file_path):
+import os
+
+def read_graph(file_name):
     graph = {}
 
+    file_path = os.path.abspath(file_name)
+
     with open(file_path, 'r') as file:
-        adjacency_matrix = [list(map(int, line.strip().split(','))) for line in file]
+        csv_reader = csv.reader(file)
+        adjacency_matrix = [list(map(int, row)) for row in csv_reader]
 
         num_islands = len(adjacency_matrix)
 
@@ -61,6 +68,3 @@ def read_graph(file_path):
                     graph[str(i)][str(j)] = adjacency_matrix[i][j]
 
     return "0", str(num_islands - 1), graph
-
-start, finish, graph_data = read_graph('../resources/islands.csv')
-
